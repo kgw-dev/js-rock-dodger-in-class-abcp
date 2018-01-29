@@ -10,6 +10,7 @@ const ROCKS = []
 
 var gameInterval = null
 
+
 function checkCollision(rock) {
   const top = positionToInteger(rock.style.top)
 
@@ -61,12 +62,19 @@ function createRock(x) {
   return rock
 }
 
-function endGame() {
+/**
+ * End the game by clearing `gameInterval`,
+ * removing all ROCKS from the DOM,
+ * and removing the `moveDodger` event listener.
+ * Finally, alert "YOU LOSE!" to the player.
+ */
+ 
+ function endGame() {
   clearInterval(gameInterval)
 
   ROCKS.forEach(function(rock) { rock.remove() })
 
-  document.removeEventListener('keydown', moveDodger)
+  document.removeEventListener('keydown', moveDodger);
 
   START.innerHTML = 'Play again?'
   START.style.display = 'inline'
